@@ -87,11 +87,14 @@ body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',
   </footer>
 </main>
 
-<!-- JS CODE INTEGRATED -->
+<!-- JS CODE -->
 <script>
 const input = document.getElementById('inputUrl');
 const downloadBtn = document.getElementById('downloadBtn');
 const resultArea = document.getElementById('resultArea');
+
+// 👇 apna backend Render ka URL yahan dalna hai
+const API_BASE = "https://downly-backend.onrender.com";
 
 downloadBtn.addEventListener('click', async () => {
   const url = input.value.trim();
@@ -100,7 +103,7 @@ downloadBtn.addEventListener('click', async () => {
   resultArea.innerHTML = `<div class="mt-4 p-4 bg-white rounded shadow text-sm">Processing... <progress class="w-full" value="0" max="100"></progress></div>`;
 
   try {
-    const resp = await fetch('/api/download', {
+    const resp = await fetch(`${API_BASE}/api/download`, {
       method: 'POST',
       headers: {'Content-Type':'application/json'},
       body: JSON.stringify({ url })
@@ -124,4 +127,3 @@ downloadBtn.addEventListener('click', async () => {
 
 </body>
 </html>
-
